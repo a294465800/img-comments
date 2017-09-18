@@ -1,0 +1,59 @@
+/* pages/student_specific/student_specific.wxss */
+
+.container {
+  width: 100%;
+  padding: 30rpx;
+}
+
+.image {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+.content, .score, .teacher {
+  margin-bottom: 20rpx;
+}
+
+.comment-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.score-point {
+  font-weight: normal;
+}
+
+.text {
+  font-size: 15px;
+  text-indent: 2em;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.teacher-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.teacher-name {
+  font-size: 24px;
+}
+
+.avatar {
+  width: 360rpx;
+  height: 360rpx;
+}
+
+.teacher-text {
+  margin-top: 10rpx;
+  padding-top: 10rpx;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.teacher-card {
+  border: 1px solid #ccc;
+  padding: 16rpx;
+}

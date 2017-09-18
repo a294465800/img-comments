@@ -1,0 +1,40 @@
+<!--pages/student_specific/student_specific.wxml-->
+<view class='container'>
+
+  <!--图片  -->
+  <image class='image' src='{{image.url}}' mode='widthFix'></image>
+  <!--/图片  -->
+
+  <block wx:if="{{ok}}">
+    <!--点评  -->
+    <view class='comment'>
+      <view class='score'>
+        <view class='comment-title'>评分：
+          <text class='score-point'>{{image.score}} 分</text>
+        </view>
+      </view>
+      <view class='content'>
+        <view class='comment-title'>点评内容：</view>
+        <view class='text'>{{image.comment}}</view>
+      </view>
+    </view>
+    <!--/点评  -->
+
+    <!--点评教师  -->
+    <view class='teacher'>
+      <view class='comment-title'>点评人：</view>
+      <view class='teacher-card'>
+        <view class='teacher-info'>
+          <view class='teacher-name'>{{image.teacher}}</view>
+          <image mode='aspectFit' class='avatar' src='{{image.avatar}}'></image>
+        </view>
+        <view class='teacher-text'>{{image.intro}}</view>
+      </view>
+    </view>
+    <!--/点评教师  -->
+  </block>
+  <block wx:else>
+    <view class='tips'>暂无点评</view>
+  </block>
+
+</view>

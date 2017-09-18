@@ -26,5 +26,8 @@ Page({
   getMoreInfo(e) {
     const id = e.currentTarget.dataset.id
     console.log(e, id)
+    wx.navigateTo({
+      url: '/pages/student_specific/student_specific?id=' + id,
+    })
   }
 })

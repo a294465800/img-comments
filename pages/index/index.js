@@ -5,7 +5,14 @@ Page({
   data: {
     userInfo: null,
   },
-  onload(){
+
+  onload() {
 
   },
+
+  goToStudent() {
+    wx.navigateTo({
+      url: '/pages/student_index/student_index',
+    })
+  }
 })

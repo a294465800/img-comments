@@ -3,7 +3,7 @@
 <view class='container'>
   <view id='ask'>你是？</view>
   <view class='part'>
-    <view class='part-item' hover-class='hover-class' hover-stay-time='150'>学生</view>
+    <view class='part-item' hover-class='hover-class' hover-stay-time='150' catchtap='goToStudent'>学生</view>
     <view class='part-item' hover-class='hover-class' hover-stay-time='150'>教师</view>
   </view>
 </view>

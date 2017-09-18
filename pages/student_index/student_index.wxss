@@ -1,0 +1,97 @@
+/* pages/student_index/student_index.wxss */
+
+.container {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  height: auto;
+  min-height: 100%;
+  padding-top: 30rpx;
+}
+
+/*  
+  图片展示区
+*/
+
+.img-part {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+#pre-img {
+  width: 100%;
+}
+
+.pre-img {
+  background-color: #eee;
+  color: #333;
+  padding: 200rpx 0;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+
+.img-part-operation {
+  display: flex;
+}
+
+.img-part-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 0 10rpx;
+  color: #fff;
+  background-color: #ea6f5a;
+}
+
+/*  
+  picker
+*/
+.picker {
+  font-size: 16px;
+  margin-bottom: 20rpx;
+  padding: 20rpx 10rpx;
+}
+
+/*  
+  操作按钮
+*/
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.menu-part {
+  width: 48%;
+  border-radius: 4px;
+  margin: 0 10rpx;
+}
+
+.submit, .menu-part-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit {
+  background-color: #42c02e;
+  font-size: 18pt;
+}
+
+.menu-part-sub {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20rpx 0;
+  font-size: 14px;
+}
+
+.menu-part-sub:first-of-type {
+  color: red;
+  margin-bottom: 10rpx;
+}

@@ -11,6 +11,6 @@ page, .container {
   点击样式
 */
 .hover-class {
-  background-color: #eee;
+  background-color: #eee!important;
 }
 

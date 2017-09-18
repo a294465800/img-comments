@@ -1,0 +1,36 @@
+<!--pages/student_index/student_index.wxml-->
+<view class='container'>
+
+  <!--图片区  -->
+  <view class='img-part'>
+    <block wx:if="{{image}}">
+      <image id='pre-img' src='https://avatars0.githubusercontent.com/u/25625618?v=4&s=460' mode='widthFix'></image>
+    </block>
+    <block wx:else>
+      <view class='pre-img' catchtap='chooseImg'>请选择图片</view>
+    </block>
+    <view class='img-part-operation'>
+      <view class='img-part-btn' catchtap='pay'>添加额外资费</view>
+      <view class='img-part-btn' catchtap='chooseImg'>选择图片</view>
+    </view>
+  </view>
+  <!--/图片区  -->
+
+  <!--图片分类  -->
+  <picker class="picker" bindchange="getType" value="{{index}}" range="{{types}}">
+    <view>
+      当前分类：{{types[index]}}
+    </view>
+  </picker>
+  <!--/图片分类  -->
+
+  <!--操作菜单  -->
+  <view class='menu'>
+    <view class='submit menu-part' catchtap='submit'>提交</view>
+    <view class='menu-part'>
+      <view class='menu-part-sub' hover-class='hover-class'>查看结果</view>
+      <view class='menu-part-sub' hover-class='hover-class'>其他</view>
+    </view>
+  </view>
+  <!--/操作菜单  -->
+</view>

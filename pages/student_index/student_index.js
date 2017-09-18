@@ -73,9 +73,17 @@ Page({
     })
   },
 
+  //查看结果跳转
   goToResult() {
     wx.navigateTo({
       url: '/pages/student_result/student_result',
+    })
+  },
+
+  //其他跳转
+  goToOther() {
+    wx.navigateTo({
+      url: '/pages/student_other/student_other',
     })
   }
 

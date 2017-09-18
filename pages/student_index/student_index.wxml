@@ -29,7 +29,7 @@
     <view class='submit menu-part' catchtap='submit'>提交</view>
     <view class='menu-part'>
       <view class='menu-part-sub' hover-class='hover-class' catchtap='goToResult'>查看结果</view>
-      <view class='menu-part-sub' hover-class='hover-class'>其他</view>
+      <view class='menu-part-sub' hover-class='hover-class' catchtap='goToOther'>其他</view>
     </view>
   </view>
   <!--/操作菜单  -->

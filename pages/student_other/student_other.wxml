@@ -1,0 +1,8 @@
+<!--pages/student_other/student_other.wxml-->
+<view class='container'>
+  <view class='nav'>
+    <view class='{{now == 0?"choose":""}}' data-now='0' catchtap='getNow'>课程报名</view>
+    <view class='{{now == 1?"choose":""}}' data-now='1' catchtap='getNow'>会员申请</view>
+  </view>
+  <view class='article'>{{content[now]}}</view>
+</view>

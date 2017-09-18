@@ -1,16 +1,27 @@
 /**app.wxss**/
+
 view {
   box-sizing: border-box;
 }
 
 page, .container {
   height: 100%;
-} 
+}
 
 /*  
   点击样式
 */
+
 .hover-class {
-  background-color: #eee!important;
+  background-color: #eee !important;
 }
 
+/*  
+  空数据样式
+*/
+
+.tips {
+  font-size: 16px;
+  text-align: center;
+  color: #666;
+}

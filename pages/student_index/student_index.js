@@ -1,4 +1,6 @@
 // pages/student_index/student_index.js
+const app = getApp()
+
 Page({
 
   data: {
@@ -68,6 +70,12 @@ Page({
           })
         }
       }
+    })
+  },
+
+  goToResult() {
+    wx.navigateTo({
+      url: '/pages/student_result/student_result',
     })
   }
 

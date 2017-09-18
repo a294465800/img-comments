@@ -1,0 +1,23 @@
+/* pages/student_result/student_result.wxss */
+
+.container {
+  width: 100%;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.pre-image {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.pre-image-name {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}

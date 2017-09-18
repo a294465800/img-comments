@@ -1,9 +1,10 @@
 //app.js
 App({
-  onLaunch(){
-    
+  onLaunch() {
+
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'https://test'
   }
 })

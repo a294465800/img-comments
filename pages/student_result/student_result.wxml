@@ -1,0 +1,13 @@
+<!--pages/student_result/student_result.wxml-->
+<view class='container'>
+  <block wx:if="{{images.length}}">
+    <block wx:for="{{images}}" wx:key="id" wx:for-item="img">
+      <image class='pre-image' src='{{img.url}}' mode='widthFix' data-id='{{img.id}}' catchtap='getMoreInfo'>
+        <view class='pre-image-name'>{{img.name}}</view>
+      </image>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='tips'>———— 暂无内容 ————</view>
+  </block>
+</view>

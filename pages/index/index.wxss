@@ -1,0 +1,26 @@
+/**index.wxss**/
+.container {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 100rpx;
+  text-align: center;
+}
+
+#ask {
+  font-size: 13px;
+  margin-bottom: 50rpx;
+}
+
+.part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.part-item {
+  width: 48%;
+  padding-top: 130px;
+  padding-bottom: 130px;
+  border: 1px solid #ccc;
+}

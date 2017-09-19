@@ -2,15 +2,17 @@
 Page({
 
   data: {
-  
+
   },
 
   onLoad(options) {
-  
+
   },
 
-  teacherLogin(e){
+  teacherLogin(e) {
     const password = e.detail.value.password
-    console.log(e)
+    wx.navigateTo({
+      url: '/pages/teacher_images/teacher_images',
+    })
   }
 })

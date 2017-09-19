@@ -12,7 +12,7 @@
   max-height: 600rpx;
 }
 
-.opertation-part {
+.operation-part {
   flex: 1;
   width: 100%;
   position: relative;

@@ -33,6 +33,13 @@ Page({
 
   },
 
+  //预览图片
+  preImages(){
+    wx.previewImage({
+      urls: [this.data.image.url],
+    })
+  },
+
   //picker 选择器
   pickerChoose(e) {
     const name = e.currentTarget.dataset.name

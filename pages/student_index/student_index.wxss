@@ -47,6 +47,7 @@
 /*  
   picker
 */
+
 .picker {
   font-size: 16px;
   margin-bottom: 20rpx;
@@ -94,4 +95,43 @@
 .menu-part-sub:first-of-type {
   color: red;
   margin-bottom: 10rpx;
+}
+
+/*  
+  填写金额
+*/
+
+.add-money-wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+}
+
+.add-money-title {
+  margin: 20rpx 0 30rpx;
+}
+
+.add-money {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 600rpx;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30rpx;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.add-money-title,.add-money .form-group {
+  text-align: left;
+}
+
+.add-money button {
+  margin: 30rpx auto 0;
+  font-size: 15px;
 }

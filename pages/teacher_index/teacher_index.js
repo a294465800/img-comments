@@ -7,11 +7,11 @@ Page({
   },
 
   onLoad(options) {
-    app.getSetting((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
-    })
+    // app.getSetting((userInfo) => {
+    //   that.setData({
+    //     userInfo: userInfo
+    //   })
+    // })
   },
 
   teacherLogin(e) {

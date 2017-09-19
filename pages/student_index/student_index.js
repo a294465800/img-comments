@@ -4,28 +4,43 @@ const app = getApp()
 Page({
 
   data: {
+    setPay: false,
     userInfo: null,
     image: '',
     types: ['建筑学', '城规', '美术学', '景观'],
     index: 0,
   },
   onLoad(options) {
-    const that = this
-    app.getSetting((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
+    // const that = this
+    // app.getSetting((userInfo) => {
+    //   that.setData({
+    //     userInfo: userInfo
+    //   })
+    // })
+  },
+
+  //显示金额输入框
+  pay() {
+    // wx.requestPayment({
+    //   timeStamp: '',
+    //   nonceStr: '',
+    //   package: '',
+    //   signType: '',
+    //   paySign: '',
+    // })
+    this.setData({
+      setPay: true
     })
   },
 
-  //付费
-  pay() {
-    wx.requestPayment({
-      timeStamp: '',
-      nonceStr: '',
-      package: '',
-      signType: '',
-      paySign: '',
+  getMoney(e) {
+    const money = e.detail.value
+  },
+
+  //隐藏金额输入框
+  hidePay() {
+    this.setData({
+      setPay: false
     })
   },
 

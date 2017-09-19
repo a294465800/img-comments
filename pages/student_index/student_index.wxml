@@ -33,4 +33,17 @@
     </view>
   </view>
   <!--/操作菜单  -->
+
+  <!--填写金额  -->
+  <view class='add-money-wrap' hidden='{{!setPay}}' catchtap='hidePay'>
+    <view class='add-money' catchtap='pay'>
+      <view class='add-money-title'>你要添加多少资费呢？</view>
+      <view class='form-group form-inline'>
+        <label class='label-control'>金额：</label>
+        <input bindinput='getMoney' focus='{{setPay}}' class='input-control' type='digit' placeholder-class='input-placeholder' placeholder='输入金额'></input>
+      </view>
+      <button type='primary' size='mini' catchtap='hidePay'>确定</button>
+    </view>
+  </view>
+  <!--/填写金额  -->
 </view>

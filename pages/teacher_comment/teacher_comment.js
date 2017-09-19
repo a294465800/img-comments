@@ -25,7 +25,7 @@ Page({
 
     image: {
       id: 1,
-      url: 'http://pic.jj20.com/up/allimg/611/021913130921/130219130921-7.jpg'
+      url: 'http://www.dogwallpapers.net/wallpapers/samoyed-puppy-wallpaper.jpg'
     }
   },
 
@@ -62,6 +62,8 @@ Page({
       })
       return false
     }
+
+    //记得处理大于 50 分情况，信息先保存到 globalData
 
     wx.navigateTo({
       url: '/pages/teacher_draw/teacher_draw',

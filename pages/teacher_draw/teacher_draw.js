@@ -11,9 +11,6 @@ Page({
     detail: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
     again: ['是', '否'],
 
-    //优化用户体验
-    ok: false,
-
     //画布属性
     height: 0,
     size: 1,
@@ -30,6 +27,10 @@ Page({
   //绘制图片封装
   drawImages(img) {
     const that = this
+    wx.showLoading({
+      title: '绘制中',
+      mask: true
+    })
     function errorFnc() {
       wx.showModal({
         title: '提示',
@@ -57,12 +58,11 @@ Page({
 
         that.ctx.drawImage(img.url, 0, 0, 300, calc)
         that.ctx.draw()
-        that.setData({
-          ok: true
-        })
+        wx.hideLoading()
 
       },
       fail: error => {
+        wx.hideLoading()
         errorFnc()
       }
     })

@@ -10,6 +10,7 @@
 .image {
   width: 600rpx;
   max-height: 600rpx;
+  margin-bottom: 30rpx;
 }
 
 .operation-part {

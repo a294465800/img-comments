@@ -1,0 +1,10 @@
+<!--pages/teacher_index/teacher_index.wxml-->
+<view class='container'>
+  <form bindsubmit="teacherLogin">
+    <view class='form-group'>
+      <label>请输入教师密码：</label>
+      <input name="password" placeholder='教师密码' placeholder-class='input-placeholder'></input>
+    </view>
+    <button form-type='submit' type='primary'>登录</button>
+  </form>
+</view>

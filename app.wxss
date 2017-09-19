@@ -25,3 +25,7 @@ page, .container {
   text-align: center;
   color: #666;
 }
+
+.input-placeholder {
+  font-size: 16px;
+}

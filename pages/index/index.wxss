@@ -7,7 +7,7 @@
 }
 
 #ask {
-  font-size: 13px;
+  font-size: 16px;
   margin-bottom: 50rpx;
 }
 
@@ -22,5 +22,14 @@
   width: 48%;
   padding-top: 130px;
   padding-bottom: 130px;
-  border: 1px solid #ccc;
+  color: #fff;
+  font-size: 18pt;
+}
+
+.part-item:first-of-type {
+  background-color: #CC0000;
+}
+
+.part-item:last-of-type {
+  background-color: #777;
 }

@@ -106,6 +106,15 @@ Page({
     that.setData({
       flag: true
     })
+  },
+
+
+  //点评页面跳转
+  goToComment(e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/teacher_comment/teacher_comment?id=' + id,
+    })
   }
 
 })

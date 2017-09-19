@@ -1,0 +1,41 @@
+<!--pages/teacher_comment/teacher_comment.wxml-->
+<view class='container'>
+  <image class='image' src='{{image.url}}' mode='aspectFit'></image>
+  <view class='opertation-part'>
+    <view class='flex-bug'>
+      <scroll-view scroll-y class='scroll'>
+        <form bindsubmit='nextStep'>
+          <view class='form-group form-inline'>
+            <label class='label-control'>该作业，总体给分：</label>
+            <input class='input-control' name="score" type='digit' placeholder='满分 50 分' placeholder-class='input-placeholder'></input>
+          </view>
+          <view class='form-group form-inline'>
+            <label class='label-control'>完成度：</label>
+            <picker class='picker' bindchange="pickerChoose" data-name="finish" value="{{index.finish}}" range="{{finish}}">{{finish[index.finish]}}</picker>
+          </view>
+          <view class='form-group form-inline'>
+            <label class='label-control'>其中概念：</label>
+            <picker class='picker' bindchange="pickerChoose" data-name="concept" value="{{index.concept}}" range="{{concept}}">{{concept[index.concept]}}</picker>
+          </view>
+          <view class='form-group form-inline'>
+            <label class='label-control'>表达：</label>
+            <picker class='picker' bindchange="pickerChoose" data-name="expression" value="{{index.expression}}" range="{{expression}}">{{expression[index.expression]}}</picker>
+          </view>
+          <view class='form-group form-inline'>
+            <label class='label-control'>上色：</label>
+            <picker class='picker' bindchange="pickerChoose" data-name="coloring" value="{{index.coloring}}" range="{{coloring}}">{{coloring[index.coloring]}}</picker>
+          </view>
+          <view class='form-group form-inline'>
+            <label class='label-control'>速度</label>
+            <picker class='picker' bindchange="pickerChoose" data-name="speed" value="{{index.speed}}" range="{{speed}}">{{speed[index.speed]}}</picker>
+          </view>
+          <view class='form-group'>
+            <label class='label-control'>希望改进的毛病是：</label>
+            <textarea class='input-control' name="sum" placeholder='写下意见' placeholder-class='input-placeholder' maxlength='200'></textarea>
+          </view>
+          <button form-type='submit' type='primary'>下一步</button>
+        </form>
+      </scroll-view>
+    </view>
+  </view>
+</view>

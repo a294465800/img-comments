@@ -4,7 +4,7 @@
   <view class='images-wrap'>
     <view class='flex-bug'>
       <scroll-view scroll-y class='scroll' bindscrolltolower="toBottom">
-        <view class='img-item' wx:for="{{images}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150'>
+        <view class='img-item' wx:for="{{images}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150' catchtap='{{img.status?"": "goToComment"}}' data-id='{{img.id}}'>
           <image class='img-item-img {{img.status?"comment":""}}' src='{{img.url}}' mode='center'></image>
           <view>点评</view>
         </view>

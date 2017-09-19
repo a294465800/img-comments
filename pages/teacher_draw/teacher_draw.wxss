@@ -1,1 +1,95 @@
 /* pages/teacher_draw/teacher_draw.wxss */
+
+.container {
+  padding: 30rpx;
+  height: auto;
+  min-height: 100%;
+}
+
+.drawing {
+  text-align: center;
+  padding-top: 100rpx;
+  min-height: 300rpx;
+}
+
+.image {
+  width: 600rpx;
+  margin: 0 auto 30rpx;
+}
+
+.image canvas {
+  margin: 0 auto;
+}
+
+.operation-part {
+  width: 100%;
+}
+
+.image-operation {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20rpx;
+}
+
+.image-operation>view {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.image-operation .image-text {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  font-size: 15px;
+  transform: translateY(120%);
+  width: 100%;
+}
+
+.small::after, .big::after, .red::after, .black::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: brown;
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.small::after {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.red::after {
+  background-color: red;
+}
+
+.black::after {
+  background-color: black;
+}
+
+.choose {
+  background-color: #eee;
+}
+
+/*  
+  保存
+*/
+
+.save {
+  display: flex;
+  margin-top: 60rpx;
+}
+
+.save button {
+  flex: 1;
+  margin: 20rpx;
+  font-size: 16px;
+}

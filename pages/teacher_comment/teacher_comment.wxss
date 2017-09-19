@@ -18,56 +18,7 @@
   position: relative;
 }
 
-.flex-bug {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 .scroll {
   width: 100%;
   height: 100%;
-}
-
-/*  
-  表单样式
-*/
-
-.form-group {
-  width: 100%;
-  margin-bottom: 20rpx;
-  font-size: 16px;
-  align-items: center;
-}
-
-.input-control, .picker {
-  border: 1px solid #ccc;
-  padding: 10rpx 15rpx;
-  border-radius: 4px;
-}
-
-.input-control {
-  width: 100%;
-}
-
-.label-control {
-  margin-bottom: 20rpx;
-  display: block;
-}
-
-.form-inline {
-  display: flex;
-}
-
-.form-inline .label-control {
-  margin-bottom: 0;
-  margin-right: 20rpx;
-}
-
-.form-inline .input-control {
-  flex: 1;
-}
-
-.form-inline .picker {
-  flex: 1;
 }

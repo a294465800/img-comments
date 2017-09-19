@@ -4,12 +4,18 @@ const app = getApp()
 Page({
 
   data: {
+    userInfo: null,
     image: '',
     types: ['建筑学', '城规', '美术学', '景观'],
     index: 0,
   },
-  onLoad: function (options) {
-
+  onLoad(options) {
+    const that = this
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
   //付费

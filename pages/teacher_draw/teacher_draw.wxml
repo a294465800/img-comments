@@ -1,2 +1,42 @@
 <!--pages/teacher_draw/teacher_draw.wxml-->
-<text>pages/teacher_draw/teacher_draw.wxml</text>
+<view class='container'>
+  <view class='image'>
+    <block wx:if="{{ok}}">
+      <canvas disable-scroll bindtouchstart='stratDraw' bindtouchmove='moveDraw' bindtouchend='endDraw' style="width: 600rpx; height: {{height}}px;" canvas-id="image"></canvas>
+    </block>
+    <block wx:else>
+      <view style="width: 600rpx; height: {{height}}px;" class='drawing'>绘图中</view>
+    </block>
+    <view class='image-operation'>
+      <view class='small {{size == 1 ? "choose": ""}}' data-size='1' catchtap='getPensize'>
+        <view class='image-text'>细</view>
+      </view>
+      <view class='big {{size == 5 ? "choose": ""}}' data-size='5' catchtap='getPensize'>
+        <view class='image-text'>粗</view>
+      </view>
+      <view class='red {{color == "red" ? "choose": ""}}' data-color='red' catchtap='getPenColor'>
+        <view class='image-text'>红色</view>
+      </view>
+      <view class='black  {{color == "black" ? "choose": ""}}' data-color='black' catchtap='getPenColor'>
+        <view class='image-text'>黑色</view>
+      </view>
+    </view>
+    <view class='save'>
+      <button type='default' catchtap='resetImg'>重置</button>
+      <button type='primary' catchtap='saveImg'>保存</button>
+    </view>
+  </view>
+  <view class='operation-part'>
+    <form bindsubmit='submitComment'>
+      <view class='form-group'>
+        <label class='label-control'>在如图细节标记上，存在以下问题：</label>
+        <picker class='picker' bindchange="pickerChoose" data-name="detail" value="{{index.detail}}" range="{{detail}}">{{detail[index.detail]}}</picker>
+      </view>
+      <view class='form-group form-inline'>
+        <label class='label-control'>是否希望该作业重新做一遍：</label>
+        <picker class='picker' style='text-align: center;' bindchange="pickerChoose" data-name="again" value="{{index.again}}" range="{{again}}">{{again[index.again]}}</picker>
+      </view>
+      <button type='primary' form-type='submit'>提交</button>
+    </form>
+  </view>
+</view>

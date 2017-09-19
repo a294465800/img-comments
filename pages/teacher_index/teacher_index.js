@@ -1,12 +1,17 @@
 // pages/teacher_index/teacher_index.js
+const app = getApp()
 Page({
 
   data: {
-
+    userInfo: null,
   },
 
   onLoad(options) {
-
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
   teacherLogin(e) {

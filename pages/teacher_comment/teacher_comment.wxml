@@ -1,7 +1,7 @@
 <!--pages/teacher_comment/teacher_comment.wxml-->
 <view class='container'>
   <image class='image' src='{{image.url}}' mode='aspectFit'></image>
-  <view class='opertation-part'>
+  <view class='operation-part'>
     <view class='flex-bug'>
       <scroll-view scroll-y class='scroll'>
         <form bindsubmit='nextStep'>

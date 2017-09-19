@@ -3,11 +3,11 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: null,
+    // userInfo: null,
   },
 
   onload() {
-
+    app.nowLogin()
   },
 
   //学生入口

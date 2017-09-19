@@ -36,10 +36,8 @@ Page({
   //picker 选择器
   pickerChoose(e) {
     const name = e.currentTarget.dataset.name
-    console.log(name)
     const picker = 'index.' + name
     const index = Number(e.detail.value)
-    console.log(e, index)
     this.setData({
       [picker]: index
     })
@@ -47,6 +45,19 @@ Page({
 
   //下一步
   nextStep(e) {
-    console.log(e)
+    const score = e.detail.value.score
+    const sum = e.detail.value.sum
+    if (!score || !sum) {
+      wx.showModal({
+        title: '提示',
+        content: '请先填写评分或者意见',
+        showCancel: false
+      })
+      return false
+    }
+
+    wx.navigateTo({
+      url: '/pages/teacher_draw/teacher_draw',
+    })
   }
 })

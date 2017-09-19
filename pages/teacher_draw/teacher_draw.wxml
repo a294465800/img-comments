@@ -1,7 +1,12 @@
 <!--pages/teacher_draw/teacher_draw.wxml-->
 <view class='container'>
   <view class='image'>
-    <canvas disable-scroll bindtouchstart='stratDraw' bindtouchmove='moveDraw' bindtouchend='endDraw' style="width: 600rpx; height: {{height}}px; min-height: 300rpx;" canvas-id="image"></canvas>
+    <block wx:if="{{ok}}">
+      <canvas disable-scroll bindtouchstart='stratDraw' bindtouchmove='moveDraw' bindtouchend='endDraw' style="width: 600rpx; height: {{height}}px; min-height: 300rpx;" canvas-id="image"></canvas>
+    </block>
+    <block wx:else>
+      <view class='drawing' style='height: {{height}}px'>绘制中</view>
+    </block>
     <view class='image-operation'>
       <view class='small {{size == 1 ? "choose": ""}}' data-size='1' catchtap='getPensize'>
         <view class='image-text'>细</view>

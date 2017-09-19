@@ -3,6 +3,10 @@ Page({
 
   data: {
 
+    //优化用户体验
+    ok: false,
+    flag: false,
+
     // picker 相关
     index: {
       detail: 0,
@@ -20,17 +24,13 @@ Page({
       url: 'http://www.dogwallpapers.net/wallpapers/samoyed-puppy-wallpaper.jpg'
     }
   },
-  onLoad(options) {
+  // onLoad(options) {
 
-  },
+  // },
 
   //绘制图片封装
   drawImages(img) {
     const that = this
-    wx.showLoading({
-      title: '绘制中',
-      mask: true
-    })
     function errorFnc() {
       wx.showModal({
         title: '提示',
@@ -42,33 +42,46 @@ Page({
       })
     }
 
-    //获取图片尺寸，然后绘制
-    wx.getImageInfo({
-      src: img.url,
-      success: res => {
-        const width = res.width
-        const height = res.height
-        if (!width || !height) {
-          errorFnc()
-        }
-        let calc = Math.round(300 / width * height)
-        that.setData({
-          height: calc
+    //下载图片
+    wx.downloadFile({
+      url: img.url,
+      success: imgDown => {
+        //获取图片尺寸，然后绘制
+        wx.getImageInfo({
+          src: imgDown.tempFilePath,
+          success: res => {
+            const width = res.width
+            const height = res.height
+            if (!width || !height) {
+              errorFnc()
+            }
+            let calc = Math.round(300 / width * height)
+            that.setData({
+              height: calc
+            })
+
+            console.log(width, calc)
+            that.ctx.drawImage(imgDown.tempFilePath, 0, 0, 300, calc)
+            that.ctx.draw()
+            that.setData({
+              ok: true,
+              flag: false,
+            })
+          },
+          fail: error => {
+            that.setData({
+              ok: true,
+              flag: false,
+            })
+            errorFnc()
+          }
         })
-
-        that.ctx.drawImage(img.url, 0, 0, 300, calc)
-        that.ctx.draw()
-        wx.hideLoading()
-
-      },
-      fail: error => {
-        wx.hideLoading()
-        errorFnc()
       }
     })
+
   },
 
-  onReady(e) {
+  onLoad(e) {
     this.ctx = wx.createCanvasContext('image')
     const that = this
     const img = that.data.image
@@ -134,9 +147,15 @@ Page({
 
   //重置
   resetImg() {
+    //阻止重复触发
+    if (this.data.flag) {
+      return false
+    }
     this.setData({
       ok: false,
+      flag: true,
     })
+
     this.drawImages(this.data.image)
   },
 

@@ -4,6 +4,7 @@ const app = getApp()
 Page({
 
   data: {
+    money: 0,
     setPay: false,
     userInfo: null,
     image: '',
@@ -35,6 +36,9 @@ Page({
 
   getMoney(e) {
     const money = e.detail.value
+    this.setData({
+      money
+    })
   },
 
   //隐藏金额输入框
@@ -79,11 +83,12 @@ Page({
         content: '请先上传图片',
         showCancel: false
       })
+      return false
     }
 
     wx.showModal({
       title: '提示',
-      content: '当前图片分类为：' + that.data.types[that.data.index] + '，确定提交吗？',
+      content: '当前图片分类为：' + that.data.types[that.data.index] + '，添加资费为'+ that.data.money +'元，确定提交吗？',
       success: result => {
         if (result.confirm) {
           wx.showToast({

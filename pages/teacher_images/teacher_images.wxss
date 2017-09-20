@@ -10,6 +10,32 @@
 .titile {
   font-size: 18pt;
   margin-bottom: 20rpx;
+  position: relative;
+}
+
+.title-money {
+  position: absolute;
+  font-size: 13px;
+  top: 0;
+  left: 0;
+  color: #eb661b;
+}
+
+.refresh {
+  background-color: #8ed338;
+  color: #fff!important;
+}
+
+.title-refresh {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #8ed338;
+  color: #8ed338;
+  padding: 10rpx;
+  font-size: 13px;
+  border-radius: 4px;
 }
 
 .images-wrap {

@@ -108,6 +108,16 @@ Page({
     })
   },
 
+  //刷新页面
+  refreshPage(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 1000)
+  },
+
 
   //点评页面跳转
   goToComment(e) {
@@ -115,6 +125,6 @@ Page({
     wx.navigateTo({
       url: '/pages/teacher_comment/teacher_comment?id=' + id,
     })
-  }
+  },
 
 })

@@ -6,10 +6,10 @@ Page({
 
     //每个 picker 的 index
     index: {
-      finish: 0,
+      completion: 0,
       concept: 0,
       expression: 0,
-      coloring: 0,
+      color: 0,
       speed: 0,
     },
     //完成度
@@ -89,8 +89,8 @@ Page({
   //下一步
   nextStep(e) {
     const score = e.detail.value.score
-    const sum = e.detail.value.sum
-    if (!score || !sum) {
+    const detail = e.detail.value.detail
+    if (!score || !detail) {
       wx.showModal({
         title: '提示',
         content: '请先填写评分或者意见',

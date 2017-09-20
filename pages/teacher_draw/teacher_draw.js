@@ -9,8 +9,8 @@ Page({
 
     // picker 相关
     index: {
-      detail: 0,
-      again: 0,
+      issue: 0,
+      redo: 0,
     },
     detail: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
     again: ['是', '否'],
@@ -22,11 +22,11 @@ Page({
     image: {
       id: 1,
       url: 'http://www.dogwallpapers.net/wallpapers/samoyed-puppy-wallpaper.jpg'
-    }
-  },
-  // onLoad(options) {
+    },
 
-  // },
+    //提交信息
+    baseUrl: '',
+  },
 
   //绘制图片封装
   drawImages(img) {
@@ -59,8 +59,6 @@ Page({
             that.setData({
               height: calc
             })
-
-            console.log(width, calc)
             that.ctx.drawImage(imgDown.tempFilePath, 0, 0, 300, calc)
             that.ctx.draw()
             that.setData({
@@ -161,12 +159,31 @@ Page({
 
   //保存绘图
   saveImg() {
+    const that = this
     wx.canvasToTempFilePath({
       canvasId: 'image',
       success: res => {
         console.log(res.tempFilePath)
-        wx.showToast({
-          title: '保存成功',
+        wx.uploadFile({
+          url: app.globalData.host + 'upload',
+          filePath: res.tempFilePath,
+          name: 'image',
+          success: res => {
+            try {
+              let data = JSON.parse(res)
+              that.setData({
+                baseUrl: data.base_url
+              })
+              wx.showToast({
+                title: '保存成功',
+              })
+            } catch (error) {
+              wx.showModal({
+                title: '提示',
+                content: '服务器错误',
+              })
+            }
+          }
         })
       }
     })

@@ -11,7 +11,7 @@
           </view>
           <view class='form-group form-inline'>
             <label class='label-control'>完成度：</label>
-            <picker class='picker' bindchange="pickerChoose" data-name="finish" value="{{index.finish}}" range="{{finish}}">{{finish[index.finish]}}</picker>
+            <picker class='picker' bindchange="pickerChoose" data-name="completion" value="{{index.completion}}" range="{{completion}}">{{completion[index.completion]}}</picker>
           </view>
           <view class='form-group form-inline'>
             <label class='label-control'>其中概念：</label>
@@ -23,7 +23,7 @@
           </view>
           <view class='form-group form-inline'>
             <label class='label-control'>上色：</label>
-            <picker class='picker' bindchange="pickerChoose" data-name="coloring" value="{{index.coloring}}" range="{{coloring}}">{{coloring[index.coloring]}}</picker>
+            <picker class='picker' bindchange="pickerChoose" data-name="color" value="{{index.color}}" range="{{color}}">{{color[index.color]}}</picker>
           </view>
           <view class='form-group form-inline'>
             <label class='label-control'>速度：</label>
@@ -31,7 +31,7 @@
           </view>
           <view class='form-group'>
             <label class='label-control'>希望改进的毛病是：</label>
-            <input class='input-control' name="sum" placeholder='写下意见' placeholder-class='input-placeholder'></input>
+            <input class='input-control' name="detail" placeholder='写下意见' placeholder-class='input-placeholder'></input>
           </view>
           <button form-type='submit' type='primary'>下一步</button>
         </form>

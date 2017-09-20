@@ -4,7 +4,7 @@
   <!--图片区  -->
   <view class='img-part'>
     <block wx:if="{{image}}">
-      <image id='pre-img' src='https://avatars0.githubusercontent.com/u/25625618?v=4&s=460' mode='widthFix'></image>
+      <image id='pre-img' src='{{image}}' mode='widthFix'></image>
     </block>
     <block wx:else>
       <view class='pre-img' catchtap='chooseImg'>请选择图片</view>

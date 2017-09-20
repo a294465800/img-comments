@@ -3,15 +3,20 @@ const app = getApp()
 Page({
 
   data: {
-    userInfo: null,
+    userInfo: app.globalData.userInfo,
   },
 
   onLoad(options) {
-    // app.getSetting((userInfo) => {
-    //   that.setData({
-    //     userInfo: userInfo
+    // const that = this
+    // if (app.globalData.userInfo) {
+    //   return false
+    // } else {
+    //   app.getSetting((userInfo) => {
+    //     that.setData({
+    //       userInfo: userInfo
+    //     })
     //   })
-    // })
+    // }
   },
 
   teacherLogin(e) {

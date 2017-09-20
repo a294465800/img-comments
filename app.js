@@ -1,11 +1,11 @@
 //app.js
 App({
   onLaunch() {
-
   },
   globalData: {
+    _token: null,
     userInfo: null,
-    host: 'https://test'
+    host: 'http://119.23.255.177:8089/api/v1/'
   },
 
   //获取用户设置
@@ -44,16 +44,16 @@ App({
                       encryptedData: res.encryptedData,
                       iv: res.iv,
                       app_id: that.globalData.app_id,
-                      _token: that.globalData._token
                     },
                     success: e => {
                       wx.hideLoading()
-                      if (200 != e.data.code) {
+                      if ('OK' != e.data.code) {
                         wx.showToast({
                           title: '登录失败',
                         })
                         that.globalData.userInfo = null
                       } else {
+                        that.globalData._token = e.data.token
                         wx.showToast({
                           title: '登录成功',
                         })
@@ -123,16 +123,16 @@ App({
                       encryptedData: res.encryptedData,
                       iv: res.iv,
                       app_id: that.globalData.app_id,
-                      _token: that.globalData._token
                     },
                     success: e => {
                       wx.hideLoading()
-                      if (200 != e.data.code) {
+                      if ('OK' != e.data.code) {
                         wx.showToast({
                           title: '登录失败',
                         })
                         that.globalData.userInfo = null
                       } else {
+                        that.globalData._token = e.data.token
                         wx.showToast({
                           title: '登录成功',
                         })

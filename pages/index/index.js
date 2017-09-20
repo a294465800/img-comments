@@ -5,8 +5,9 @@ Page({
   data: {
     // userInfo: null,
   },
+  
 
-  onload() {
+  onLoad() {
     app.nowLogin()
   },
 

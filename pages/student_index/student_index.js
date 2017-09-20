@@ -6,18 +6,25 @@ Page({
   data: {
     money: 0,
     setPay: false,
-    userInfo: null,
+    userInfo: app.globalData.userInfo,
     image: '',
     types: ['建筑学', '城规', '美术学', '景观'],
     index: 0,
+
+    //提交的数据
+    baseUrl: '',
   },
   onLoad(options) {
-    // const that = this
-    // app.getSetting((userInfo) => {
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
+    const that = this
+    if (app.globalData.userInfo) {
+      return false
+    } else {
+      app.getSetting((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+    }
   },
 
   //显示金额输入框
@@ -57,9 +64,26 @@ Page({
     wx.chooseImage({
       count: 1,
       success(res) {
-        wx.hideLoading()
-        that.setData({
-          image: res.tempFilePaths[0]
+        wx.uploadFile({
+          url: app.globalData.host + 'upload',
+          filePath: res.tempFilePaths[0],
+          name: 'image',
+          success: upload => {
+            try {
+              let data = JSON.parse(upload.data)
+              console.log(upload)
+              wx.hideLoading()
+              that.setData({
+                image: res.tempFilePaths[0],
+                baseUrl: data.base_url
+              })
+            } catch (error) {
+              wx.showModal({
+                title: '提示',
+                content: '上传出错',
+              })
+            }
+          }
         })
       },
     })
@@ -88,11 +112,25 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '当前图片分类为：' + that.data.types[that.data.index] + '，添加资费为'+ that.data.money +'元，确定提交吗？',
+      content: '当前图片分类为：' + that.data.types[that.data.index] + '，添加资费为' + that.data.money + '元，确定提交吗？',
       success: result => {
         if (result.confirm) {
-          wx.showToast({
-            title: '提交成功',
+          wx.request({
+            url: app.globalData.host + 'picture',
+            method: 'POST',
+            data: {
+              url: that.data.baseUrl,
+              category: that.data.index + 1,
+              money: that.data.money,
+              token: app.globalData._token
+            },
+            success: res => {
+              if ('OK' == res.data.cdode) {
+                wx.showToast({
+                  title: '提交成功',
+                })
+              }
+            }
           })
         }
       }

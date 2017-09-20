@@ -2,8 +2,8 @@
 <view class='container'>
   <block wx:if="{{images.length}}">
     <block wx:for="{{images}}" wx:key="id" wx:for-item="img">
-      <image class='pre-image' src='{{img.url}}' mode='widthFix' data-id='{{img.id}}' catchtap='getMoreInfo'>
-        <view class='pre-image-name'>{{img.name}}</view>
+      <image class='pre-image' src='{{img.url}}' mode='widthFix' data-id='{{img.id}}' catchtap='{{img.state == 1?"":"getMoreInfo"}}'>
+        <view class='pre-image-name'>{{category[img.category - 1]}} —— {{img.state == 1?"未点评":""}}</view>
       </image>
     </block>
   </block>

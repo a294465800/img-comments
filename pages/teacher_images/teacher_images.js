@@ -43,29 +43,47 @@ Page({
     ],
   },
 
-  onLoad: function (options) {
-
+  onLoad(options) {
+    this.imagesRequest(1, result => {
+      this.setData({
+        images: result
+      })
+    })
   },
 
+
   //请求封装
-  imagesRequest(type, page, cb) {
-    // wx.request({
-    //   url: app.globalData.host,
-    //   data: {
-    //     type,
-    //     page
-    //   },
-    //   success: res => {
-    //     let data = []
-    //     if (200 == res.data.code) {
-    //       data = res.data.data
-    //     }
-
-    //     typeof cb === 'function' && cb(data)
-    //   }
-    // })
-
-    typeof cb === 'function' && cb(this.data.images)
+  imagesRequest(page, cb) {
+    wx.request({
+      url: app.globalData.host + 'pictures',
+      data: {
+        token: app.globalData._token,
+        type: 2,
+        page: page,
+      },
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+            typeof cb === 'function' && cb(res.data.data)
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            success: () => {
+              wx.navigateBack()
+            }
+          })
+        }
+      }
+    })
   },
 
   //触底刷新
@@ -85,7 +103,7 @@ Page({
       wx.showLoading({
         title: '加载中',
       })
-      that.imagesRequest(1, page + 1, res => {
+      that.imagesRequest(page + 1, res => {
         if (res.length) {
           that.setData({
             flag: false,
@@ -109,7 +127,7 @@ Page({
   },
 
   //刷新页面
-  refreshPage(){
+  refreshPage() {
     wx.showLoading({
       title: '加载中',
     })

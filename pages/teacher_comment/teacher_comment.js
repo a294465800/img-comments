@@ -30,11 +30,47 @@ Page({
   },
 
   onLoad(options) {
+    this.getImage(options.id, result => {
+      this.setData({
+        image: result
+      })
+    })
+  },
 
+  //请求封装
+  getImage(id, cb) {
+    wx.request({
+      url: app.globalData.host + 'picture/' + id,
+      data: {
+        token: app.globalData._token,
+      },
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+            typeof cb === 'function' && cb(res.data.data)
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            success: () => {
+              wx.navigateBack()
+            }
+          })
+        }
+      }
+    })
   },
 
   //预览图片
-  preImages(){
+  preImages() {
     wx.previewImage({
       urls: [this.data.image.url],
     })

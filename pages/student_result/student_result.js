@@ -4,6 +4,10 @@ const app = getApp()
 Page({
 
   data: {
+
+    //目录
+    category: ['建筑学', '城规', '美术学', '景观'],
+
     images: [
       {
         id: 1,
@@ -19,7 +23,45 @@ Page({
   },
 
   onLoad(options) {
+    this.getImages(1, (result) => {
+      this.setData({
+        images: result
+      })
+    })
+  },
 
+  //请求封装
+  getImages(page, cb) {
+    wx.request({
+      url: app.globalData.host + 'pictures',
+      data: {
+        token: app.globalData._token,
+        type: 1,
+        page: page,
+      },
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+            typeof cb === 'function' && cb(res.data.data)
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            success: () => {
+              wx.navigateBack()
+            }
+          })
+        }
+      }
+    })
   },
 
   //查看图片具体信息

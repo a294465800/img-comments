@@ -125,12 +125,18 @@ Page({
               token: app.globalData._token
             },
             success: res => {
-              if ('OK' == res.data.cdode) {
+              if ('OK' == res.data.code) {
                 wx.showToast({
                   title: '提交成功',
                 })
+              }else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message,
+                  showCancel: false
+                })
               }
-            }
+            },
           })
         }
       }

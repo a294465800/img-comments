@@ -2,8 +2,9 @@
 
 .container {
   width: 100%;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
+  padding: 30rpx;
+  height: auto;
+  min-height: 100%;
 }
 
 .pre-image {

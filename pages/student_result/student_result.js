@@ -5,21 +5,16 @@ Page({
 
   data: {
 
+    //触底刷新控制
+    flag: false,
+    close: false,
+
     //目录
     category: ['建筑学', '城规', '美术学', '景观'],
 
-    images: [
-      {
-        id: 1,
-        url: 'http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJlbKxZyISG9yAAgIhmkacPAAALHYgNs0jkACAie534.jpg',
-        name: '小狗狗'
-      },
-      {
-        id: 2,
-        url: 'http://www.51pptmoban.com/d/file/2014/03/18/1d058a5416734d40c388983734f73517.jpg',
-        name: '小兔兔'
-      }
-    ]
+    //接口数据
+    images: [],
+    page: 1,
   },
 
   onLoad(options) {
@@ -71,5 +66,46 @@ Page({
     wx.navigateTo({
       url: '/pages/student_specific/student_specific?id=' + id,
     })
-  }
+  },
+
+  //下拉刷新
+  onPullDownRefresh() {
+    const that = this
+    that.getImages(1, result => {
+      wx.stopPullDownRefresh()
+      that.setData({
+        images: result,
+        close: false
+      })
+    })
+  },
+
+  //触底刷新
+  onReachBottom() {
+    const that = this
+    const flag = that.data.flag
+    const close = that.data.close
+    const page = that.data.page
+    if (flag || close) {
+      return false
+    }
+    that.getImages(page + 1, result => {
+      if (result.length) {
+        that.setData({
+          images: [...that.data.images, ...result],
+          flag: false,
+          page: page + 1
+        })
+      } else {
+        that.setData({
+          close: true,
+          flag: false,
+          page: page + 1
+        })
+      }
+    })
+    that.setData({
+      flag: true
+    })
+  },
 })

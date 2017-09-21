@@ -1,4 +1,5 @@
 // pages/teacher_draw/teacher_draw.js
+const app = getApp()
 Page({
 
   data: {
@@ -12,8 +13,8 @@ Page({
       issue: 0,
       redo: 0,
     },
-    detail: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
-    again: ['是', '否'],
+    issue: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
+    redo: ['是', '否'],
 
     //画布属性
     height: 0,
@@ -26,6 +27,49 @@ Page({
 
     //提交信息
     baseUrl: '',
+  },
+
+  onLoad(options) {
+    this.getImage(options.id, result => {
+      this.ctx = wx.createCanvasContext('image')
+      this.drawImages(result)
+    })
+    // this.ctx = wx.createCanvasContext('image')
+    // const that = this
+    // const img = this.data.image
+    // this.drawImages(img)
+  },
+
+  //获取图片封装
+  getImage(id, cb) {
+    wx.request({
+      url: app.globalData.host + 'picture/' + id,
+      data: {
+        token: app.globalData._token,
+      },
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+            typeof cb === 'function' && cb(res.data.data)
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            success: () => {
+              wx.navigateBack()
+            }
+          })
+        }
+      }
+    })
   },
 
   //绘制图片封装
@@ -50,6 +94,7 @@ Page({
         wx.getImageInfo({
           src: imgDown.tempFilePath,
           success: res => {
+            console.log(res, 'getImg')
             const width = res.width
             const height = res.height
             if (!width || !height) {
@@ -74,16 +119,16 @@ Page({
             errorFnc()
           }
         })
-      }
+      },
     })
 
-  },
+    let timer = setTimeout(() => {
+      if (!that.data.ok) {
+        errorFnc()
+      }
+      clearTimeout(timer)
+    }, 60000)
 
-  onLoad(e) {
-    this.ctx = wx.createCanvasContext('image')
-    const that = this
-    const img = that.data.image
-    that.drawImages(img)
   },
 
   //开始绘制
@@ -189,6 +234,7 @@ Page({
     })
   },
 
+  // picker 选择
   pickerChoose(e) {
     const name = e.currentTarget.dataset.name
     const picker = 'index.' + name
@@ -197,6 +243,57 @@ Page({
       [picker]: index
     })
 
+  },
+
+  //提交
+  submitComment() {
+    const that = this
+    let submitInfo = {}
+    wx.getStorage({
+      key: 'save',
+      success(res) {
+        submitInfo = res.data
+      },
+    })
+
+    submitInfo.pic_url = that.data.baseUrl
+    submitInfo.token = app.globalData._token
+    const result = Object.assign(submitInfo, that.data.index)
+
+    wx.request({
+      url: app.globalData.host + 'picture/' + that.data.image.id + '/mark',
+      method: 'POST',
+      data: result,
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+            wx.removeStorage({
+              key: 'save',
+            })
+            wx.showToast({
+              title: '提交成功',
+              complete: () => {
+                wx.navigateBack({
+                  delta: 2
+                })
+              }
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+          })
+        }
+      }
+    })
   }
 
 })

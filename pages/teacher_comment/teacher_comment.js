@@ -13,26 +13,23 @@ Page({
       speed: 0,
     },
     //完成度
-    finish: ['较高', '正常', '还需努力'],
+    completion: ['较高', '正常', '还需努力'],
     //概念
     concept: ['太过复杂，需简化', '有简单且不错的概念', '缺少空间概念', '与题目不符合'],
     //表达
     expression: ['较为出色', '一般', '还需要训练', '虽然手绘功底不错但是表达层次混乱', '线条太差'],
     //上色
-    coloring: ['马克笔运用较为出色', '太过生硬', '颜色太浅，图底关系不清楚', '乱涂色', '太鲜艳，缺少逼格'],
+    color: ['马克笔运用较为出色', '太过生硬', '颜色太浅，图底关系不清楚', '乱涂色', '太鲜艳，缺少逼格'],
     //速度
     speed: ['不错，继续保持', '未标明时间，不知道速度如何'],
 
-    image: {
-      id: 1,
-      url: 'http://www.dogwallpapers.net/wallpapers/samoyed-puppy-wallpaper.jpg'
-    }
+    image: {},
   },
 
   onLoad(options) {
     this.getImage(options.id, result => {
       this.setData({
-        image: result
+        image: result,
       })
     })
   },
@@ -88,7 +85,7 @@ Page({
 
   //下一步
   nextStep(e) {
-    const score = e.detail.value.score
+    const score = e.detail.value.score > 50 ? 50 : e.detail.value.score
     const detail = e.detail.value.detail
     if (!score || !detail) {
       wx.showModal({
@@ -99,10 +96,18 @@ Page({
       return false
     }
 
+    let save = this.data.index
+    save.score = score
+    save.detail = detail
+    wx.setStorage({
+      key: 'save',
+      data: save,
+    })
+
     //记得处理大于 50 分情况，信息先保存到 globalData
 
     wx.navigateTo({
-      url: '/pages/teacher_draw/teacher_draw',
+      url: '/pages/teacher_draw/teacher_draw?id=' + this.data.image.id,
     })
   }
 })

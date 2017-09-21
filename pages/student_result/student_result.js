@@ -75,7 +75,8 @@ Page({
       wx.stopPullDownRefresh()
       that.setData({
         images: result,
-        close: false
+        close: false,
+        page: 1,
       })
     })
   },
@@ -89,7 +90,11 @@ Page({
     if (flag || close) {
       return false
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     that.getImages(page + 1, result => {
+      wx.hideLoading()
       if (result.length) {
         that.setData({
           images: [...that.data.images, ...result],

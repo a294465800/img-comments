@@ -37,7 +37,7 @@ App({
                 success: res => {
                   that.globalData.userInfo = res.userInfo
                   wx.request({
-                    url: that.globalData.host + 'login',
+                    url: that.globalData.host + 'oath/login',
                     method: 'POST',
                     data: {
                       code: rs.code,
@@ -116,7 +116,7 @@ App({
                 success: res => {
                   that.globalData.userInfo = res.userInfo
                   wx.request({
-                    url: that.globalData.host + 'login',
+                    url: that.globalData.host + 'oath/login',
                     method: 'POST',
                     data: {
                       code: rs.code,

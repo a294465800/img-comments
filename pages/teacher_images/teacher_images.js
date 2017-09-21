@@ -18,6 +18,35 @@ Page({
         images: result
       })
     })
+
+    wx.request({
+      url: app.globalData.host + 'teacher/count',
+      data: {
+        token: app.globalData._token
+      },
+      success: res => {
+        try {
+          if ('OK' == res.data.code) {
+
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false,
+            })
+          }
+        } catch (error) {
+          wx.showModal({
+            title: '提示',
+            content: '服务器错误',
+            showCancel: false,
+            success: () => {
+              wx.navigateBack()
+            }
+          })
+        }
+      }
+    })
   },
 
 

@@ -27,20 +27,6 @@ Page({
     }
   },
 
-  //显示金额输入框
-  pay() {
-    // wx.requestPayment({
-    //   timeStamp: '',
-    //   nonceStr: '',
-    //   package: '',
-    //   signType: '',
-    //   paySign: '',
-    // })
-    this.setData({
-      setPay: true
-    })
-  },
-
   getMoney(e) {
     const money = e.detail.value
     this.setData({
@@ -126,10 +112,37 @@ Page({
             },
             success: res => {
               if ('OK' == res.data.code) {
-                wx.showToast({
-                  title: '提交成功',
-                })
-              }else {
+                if (that.data.money > 0) {
+                  wx.request({
+                    url: app.globalData.host + 'order',
+                    method: 'POST',
+                    data: {
+                      number: res.data.data.number,
+                      pic_id: res.data.data.picture_id,
+                      token: app.globalData._token,
+                    },
+                    success: rs => {
+                      if ('OK' == rs.data.code) {
+                        that.requestPay(rs.data.data, () => {
+                          wx.showToast({
+                            title: '提交成功',
+                          })
+                        })
+                      } else {
+                        wx.showModal({
+                          title: '提示',
+                          content: rs.data.message,
+                          showCancel: false
+                        })
+                      }
+                    }
+                  })
+                } else {
+                  wx.showToast({
+                    title: '提交成功',
+                  })
+                }
+              } else {
                 wx.showModal({
                   title: '提示',
                   content: res.data.message,
@@ -140,6 +153,42 @@ Page({
           })
         }
       }
+    })
+  },
+
+  //支付调起
+  requestPay(data, cb) {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: res => {
+        console.log('ok')
+        typeof cb === 'function' && cb()
+      },
+      fail: cancel => {
+        console.log('fail', cancel)
+        wx.showToast({
+          title: '已取消',
+        })
+      }
+    })
+  },
+
+
+  //显示金额输入框
+  pay() {
+    // wx.requestPayment({
+    //   timeStamp: '',
+    //   nonceStr: '',
+    //   package: '',
+    //   signType: '',
+    //   paySign: '',
+    // })
+    this.setData({
+      setPay: true
     })
   },
 

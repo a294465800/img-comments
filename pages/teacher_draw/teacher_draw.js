@@ -20,10 +20,7 @@ Page({
     height: 0,
     size: 1,
     color: 'red',
-    image: {
-      id: 1,
-      url: 'http://www.dogwallpapers.net/wallpapers/samoyed-puppy-wallpaper.jpg'
-    },
+    image: null,
 
     //提交信息
     baseUrl: '',
@@ -33,6 +30,9 @@ Page({
     this.getImage(options.id, result => {
       this.ctx = wx.createCanvasContext('image')
       this.drawImages(result)
+      this.setData({
+        image: result
+      })
     })
     // this.ctx = wx.createCanvasContext('image')
     // const that = this
@@ -121,13 +121,6 @@ Page({
         })
       },
     })
-
-    let timer = setTimeout(() => {
-      if (!that.data.ok) {
-        errorFnc()
-      }
-      clearTimeout(timer)
-    }, 60000)
 
   },
 
@@ -252,47 +245,49 @@ Page({
     wx.getStorage({
       key: 'save',
       success(res) {
+        console.log(res)
         submitInfo = res.data
-      },
-    })
 
-    submitInfo.pic_url = that.data.baseUrl
-    submitInfo.token = app.globalData._token
-    const result = Object.assign(submitInfo, that.data.index)
+        submitInfo.pic_url = that.data.baseUrl
+        submitInfo.token = app.globalData._token
+        let result = Object.assign(submitInfo, that.data.index)
+        console.log(submitInfo, result)
 
-    wx.request({
-      url: app.globalData.host + 'picture/' + that.data.image.id + '/mark',
-      method: 'POST',
-      data: result,
-      success: res => {
-        try {
-          if ('OK' == res.data.code) {
-            wx.removeStorage({
-              key: 'save',
-            })
-            wx.showToast({
-              title: '提交成功',
-              complete: () => {
-                wx.navigateBack({
-                  delta: 2
+        wx.request({
+          url: app.globalData.host + 'picture/' + that.data.image.id + '/mark',
+          method: 'POST',
+          data: result,
+          success: res => {
+            try {
+              if ('OK' == res.data.code) {
+                wx.removeStorage({
+                  key: 'save',
+                })
+                wx.showToast({
+                  title: '提交成功',
+                  complete: () => {
+                    wx.navigateBack({
+                      delta: 2
+                    })
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message,
+                  showCancel: false,
                 })
               }
-            })
-          } else {
-            wx.showModal({
-              title: '提示',
-              content: res.data.message,
-              showCancel: false,
-            })
+            } catch (error) {
+              wx.showModal({
+                title: '提示',
+                content: '服务器错误',
+                showCancel: false,
+              })
+            }
           }
-        } catch (error) {
-          wx.showModal({
-            title: '提示',
-            content: '服务器错误',
-            showCancel: false,
-          })
-        }
-      }
+        })
+      },
     })
   }
 

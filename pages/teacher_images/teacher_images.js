@@ -10,9 +10,10 @@ Page({
     page: 1,
 
     images: [],
+    account: 0,
   },
 
-  onLoad(options) {
+  onShow(options) {
     this.imagesRequest(1, result => {
       this.setData({
         images: result
@@ -27,7 +28,9 @@ Page({
       success: res => {
         try {
           if ('OK' == res.data.code) {
-
+            this.setData({
+              account: res.data.data
+            })
           } else {
             wx.showModal({
               title: '提示',

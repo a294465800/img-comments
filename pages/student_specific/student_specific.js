@@ -2,16 +2,22 @@
 const app = getApp()
 Page({
   data: {
-    ok: true,
-    image: {
-      id: 1,
-      url: 'http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJlbKxZyISG9yAAgIhmkacPAAALHYgNs0jkACAie534.jpg',
-      teacher: '张起灵',
-      avatar: 'http://y3.ifengimg.com/cmpp/2015/06/13/08/08999aef-3d44-4015-8964-1c652bfe39b3_size138_w400_h599.jpg',
-      comment: '这是一张很有灵性的图片，十分的有意思，给你满分！',
-      score: 37,
-      intro: '该老师从盗墓笔记毕业，十分有实力！',
-    }
+    image: null,
+
+    //点评键值
+    completion: ['较高', '正常', '还需努力'],
+    //概念
+    concept: ['太过复杂，需简化', '有简单且不错的概念', '缺少空间概念', '与题目不符合'],
+    //表达
+    expression: ['较为出色', '一般', '还需要训练', '虽然手绘功底不错但是表达层次混乱', '线条太差'],
+    //上色
+    color: ['马克笔运用较为出色', '太过生硬', '颜色太浅，图底关系不清楚', '乱涂色', '太鲜艳，缺少逼格'],
+    //速度
+    speed: ['不错，继续保持', '未标明时间，不知道速度如何'],
+    //细节标记
+    issue: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
+    //重做
+    redo: ['是', '否'],
   },
 
   onLoad(options) {

@@ -11,6 +11,9 @@ Page({
 
     images: [],
     account: 0,
+
+    types: ['建筑学', '城规', '美术学', '景观'],
+    category: 0,
   },
 
   onShow(options) {
@@ -29,7 +32,8 @@ Page({
         try {
           if ('OK' == res.data.code) {
             this.setData({
-              account: res.data.data
+              account: res.data.data.count,
+              category: res.data.data.category,
             })
           } else {
             wx.showModal({
@@ -51,7 +55,6 @@ Page({
       }
     })
   },
-
 
   //请求封装
   imagesRequest(page, cb) {

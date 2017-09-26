@@ -34,10 +34,6 @@ Page({
         image: result
       })
     })
-    // this.ctx = wx.createCanvasContext('image')
-    // const that = this
-    // const img = this.data.image
-    // this.drawImages(img)
   },
 
   //获取图片封装

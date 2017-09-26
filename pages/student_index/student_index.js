@@ -57,7 +57,6 @@ Page({
           success: upload => {
             try {
               let data = JSON.parse(upload.data)
-              console.log(upload)
               wx.hideLoading()
               that.setData({
                 image: res.tempFilePaths[0],
@@ -165,11 +164,9 @@ Page({
       signType: data.signType,
       paySign: data.paySign,
       success: res => {
-        console.log('ok')
         typeof cb === 'function' && cb()
       },
       fail: cancel => {
-        console.log('fail', cancel)
         wx.showToast({
           title: '已取消',
         })

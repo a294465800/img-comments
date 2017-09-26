@@ -2,20 +2,27 @@
 <view class='container'>
 
   <!--图片  -->
-  <image class='image' src='{{image.url}}' mode='widthFix'></image>
+  <image class='image' src='{{image.mark.pic_url?image.mark.pic_url:image.url}}' mode='widthFix'></image>
   <!--/图片  -->
 
-  <block wx:if="{{ok}}">
+  <block wx:if="{{image.mark}}">
     <!--点评  -->
+    <view class='text right'>时间：{{image.mark.updated_at}}</view>
     <view class='comment'>
       <view class='score'>
         <view class='comment-title'>评分：
-          <text class='score-point'>{{image.score}} 分</text>
+          <text class='score-point'>{{image.mark.score}} 分</text>
         </view>
       </view>
       <view class='content'>
         <view class='comment-title'>点评内容：</view>
-        <view class='text'>{{image.comment}}</view>
+        <view class='text'>完成度：{{completion[image.mark.completion]}}</view>
+        <view class='text'>其中概念：{{concept[image.mark.concept]}}</view>
+        <view class='text'>表达：{{expression[image.mark.expression]}}</view>
+        <view class='text'>上色：{{color[image.mark.color]}}</view>
+        <view class='text'>速度：{{speed[image.mark.speed]}}</view>
+        <view class='text'>细节上存在的问题：{{issue[image.mark.issue]}}</view>
+        <view class='text'>是否重做：{{redo[image.mark.redo]}}</view>
       </view>
     </view>
     <!--/点评  -->
@@ -23,18 +30,19 @@
     <!--点评教师  -->
     <view class='teacher'>
       <view class='comment-title'>点评人：</view>
-      <view class='teacher-card'>
+      <view class='text'>{{image.teacher}}</view>
+      <!-- <view class='teacher-card'>
         <view class='teacher-info'>
           <view class='teacher-name'>{{image.teacher}}</view>
           <image mode='aspectFit' class='avatar' src='{{image.avatar}}'></image>
         </view>
         <view class='teacher-text'>{{image.intro}}</view>
-      </view>
+      </view> -->
     </view>
     <!--/点评教师  -->
   </block>
   <block wx:else>
-    <view class='tips'>暂无点评</view>
+    <view class='tips'>暂无数据</view>
   </block>
 
 </view>

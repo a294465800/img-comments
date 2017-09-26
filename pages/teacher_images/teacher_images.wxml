@@ -1,7 +1,7 @@
 <!--pages/teacher_images/teacher_images.wxml-->
 <view class='container'>
-  <view class='titile'>建筑学
-    <view class='title-money'>本月资费： {{account}} 元</view>
+  <view class='titile'>{{types[category - 1]}}
+    <view class='title-money'>本月资费：{{account}} 元</view>
     <view class='title-refresh' hover-class='refresh' hover-stay-time='150' catchtap='refreshPage'>刷新</view>
   </view>
   <view class='images-wrap'>

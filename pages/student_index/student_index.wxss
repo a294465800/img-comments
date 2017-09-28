@@ -59,28 +59,33 @@
 */
 
 .menu {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100%; */
   text-align: center;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .menu-part {
-  width: 48%;
-  border-radius: 4px;
-  margin: 0 10rpx;
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  /* margin: 0 10rpx; */
 }
 
 .submit, .menu-part-sub {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
 }
 
 .submit {
   background-color: #42c02e;
-  font-size: 18pt;
+  font-size: 16pt;
+  padding: 24rpx 0;
+  margin-bottom: 20rpx;
+  border-radius: 4px;
 }
 
 .menu-part-sub {
@@ -89,12 +94,9 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 20rpx 0;
-  font-size: 14px;
-}
-
-.menu-part-sub:first-of-type {
-  color: red;
-  margin-bottom: 10rpx;
+  font-size: 15px;
+  margin: 0 10rpx;
+  flex: 1;
 }
 
 /*  

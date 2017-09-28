@@ -5,7 +5,7 @@ App({
   globalData: {
     _token: null,
     userInfo: null,
-    host: 'http://119.23.255.177:8089/api/v1/'
+    host: 'http://121.196.214.115:8080/api/v1/'
   },
 
   //获取用户设置

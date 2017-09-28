@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .container {
   padding-left: 30rpx;
   padding-right: 30rpx;
@@ -18,18 +19,23 @@
   width: 100%;
 }
 
-.part-item {
+.part-item-wrap {
   width: 48%;
-  padding-top: 130px;
-  padding-bottom: 130px;
-  color: #fff;
+}
+
+.part-item {
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
+  color: #333;
   font-size: 18pt;
+  background-color: #fff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.part-item:first-of-type {
-  background-color: #CC0000;
+.part-item image {
+  width: 60%;
 }
 
-.part-item:last-of-type {
-  background-color: #777;
+.part-name {
+  margin-top: 30rpx;
 }

@@ -11,7 +11,7 @@ Page({
     // picker 相关
     index: {
       issue: 0,
-      redo: 0,
+      redo: 1,
     },
     issue: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
     redo: ['是', '否'],
@@ -31,7 +31,8 @@ Page({
       this.ctx = wx.createCanvasContext('image')
       this.drawImages(result)
       this.setData({
-        image: result
+        image: result,
+        baseUrl: result.url,
       })
     })
   },
@@ -201,7 +202,7 @@ Page({
         wx.uploadFile({
           url: app.globalData.host + 'upload',
           filePath: res.tempFilePath,
-          name: 'image',
+          name: 'file',
           success: res => {
             try {
               let data = JSON.parse(res)

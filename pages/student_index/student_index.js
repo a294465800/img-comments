@@ -53,8 +53,9 @@ Page({
         wx.uploadFile({
           url: app.globalData.host + 'upload',
           filePath: res.tempFilePaths[0],
-          name: 'image',
+          name: 'file',
           success: upload => {
+            console.log(upload)
             try {
               let data = JSON.parse(upload.data)
               wx.hideLoading()
@@ -105,7 +106,7 @@ Page({
             method: 'POST',
             data: {
               url: that.data.baseUrl,
-              category: that.data.index + 1,
+              category: that.data.index * 1 + 1,
               money: that.data.money,
               token: app.globalData._token
             },

@@ -26,7 +26,7 @@
 
   <!--操作菜单  -->
   <view class='menu'>
-    <view class='submit menu-part' catchtap='submit'>提交</view>
+    <view class='submit' catchtap='submit'>提交</view>
     <view class='menu-part'>
       <view class='menu-part-sub' hover-class='hover-class' catchtap='goToResult'>查看结果</view>
       <view class='menu-part-sub' hover-class='hover-class' catchtap='goToOther'>其他</view>

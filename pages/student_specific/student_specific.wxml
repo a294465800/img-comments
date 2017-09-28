@@ -10,12 +10,17 @@
     <view class='text right'>时间：{{image.mark.updated_at}}</view>
     <view class='comment'>
       <view class='score'>
-        <view class='comment-title'>评分：
-          <text class='score-point'>{{image.mark.score}} 分</text>
+        <view class='icon-part'>
+          <image mode='aspectFit' src='/images/score.png'></image>
+          <view class='comment-title '>评分</view>
         </view>
+        <view class='score-point'><text>{{image.mark.score}}</text> 分</view>
       </view>
       <view class='content'>
-        <view class='comment-title'>点评内容：</view>
+        <view class='icon-part'>
+          <image mode='aspectFit' src='/images/content.png'></image>
+          <view class='comment-title'>点评内容</view>
+        </view>
         <view class='text'>完成度：{{completion[image.mark.completion]}}</view>
         <view class='text'>其中概念：{{concept[image.mark.concept]}}</view>
         <view class='text'>表达：{{expression[image.mark.expression]}}</view>
@@ -29,7 +34,10 @@
 
     <!--点评教师  -->
     <view class='teacher'>
-      <view class='comment-title'>点评人：</view>
+      <view class='icon-part'>
+        <image mode='aspectFit' src='/images/people.png'></image>
+        <view class='comment-title'>点评人</view>
+      </view>
       <view class='text'>{{image.teacher}}</view>
       <!-- <view class='teacher-card'>
         <view class='teacher-info'>

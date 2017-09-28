@@ -5,13 +5,18 @@
     <view class='title-refresh' hover-class='refresh' hover-stay-time='150' catchtap='refreshPage'>刷新</view>
   </view>
   <view class='images-wrap'>
-    <view class='flex-bug'>
-      <scroll-view scroll-y class='scroll' bindscrolltolower="toBottom">
-        <view class='img-item' wx:for="{{images}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150' catchtap='{{img.state == 1?"goToComment": ""}}' data-id='{{img.id}}'>
-          <image class='img-item-img {{img.state == 1?"":"comment"}}' src='{{img.url}}' mode='center'></image>
-          <view>点评</view>
-        </view>
-      </scroll-view>
-    </view>
+    <block wx:if="{{images.length}}">
+      <view class='flex-bug'>
+        <scroll-view scroll-y class='scroll' bindscrolltolower="toBottom">
+          <view class='img-item' wx:for="{{images}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150' catchtap='{{img.state == 1?"goToComment": ""}}' data-id='{{img.id}}'>
+            <image class='img-item-img {{img.state == 1?"":"comment"}}' src='{{img.url}}' mode='center'></image>
+            <view>点评</view>
+          </view>
+        </scroll-view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='tips'>暂无内容</view>
+    </block>
   </view>
 </view>

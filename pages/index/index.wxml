@@ -3,7 +3,17 @@
 <view class='container'>
   <view id='ask'>你是？</view>
   <view class='part'>
-    <view class='part-item' catchtap='goToStudent'>学生</view>
-    <view class='part-item' catchtap='gotToTeacher'>教师</view>
+    <view class='part-item-wrap'>
+      <view class='part-item' catchtap='goToStudent' hover-class='hover-class' hover-stay-time='150'>
+        <image mode='aspectFit' src='/images/student.png'></image>
+      </view>
+      <view class='part-name'>学生</view>
+    </view>
+    <view class='part-item-wrap'>
+      <view class='part-item' catchtap='gotToTeacher' hover-class='hover-class' hover-stay-time='150'>
+        <image mode='aspectFit' src='/images/teacher.png'></image>
+      </view>
+      <view class='part-name'>教师</view>
+    </view>
   </view>
 </view>

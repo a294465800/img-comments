@@ -3,6 +3,7 @@ const app = getApp()
 Page({
 
   data: {
+    host: 'http://121.196.214.115:8080/',
 
     //每个 picker 的 index
     index: {
@@ -69,7 +70,7 @@ Page({
   //预览图片
   preImages() {
     wx.previewImage({
-      urls: [this.data.image.url],
+      urls: [this.data.host + this.data.image.url],
     })
   },
 

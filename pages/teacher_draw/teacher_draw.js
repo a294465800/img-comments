@@ -1,5 +1,6 @@
 // pages/teacher_draw/teacher_draw.js
 const app = getApp()
+let timer = null
 Page({
 
   data: {
@@ -24,17 +25,22 @@ Page({
 
     //提交信息
     baseUrl: '',
+    host: 'http://121.196.214.115:8080/',
   },
 
   onLoad(options) {
     this.getImage(options.id, result => {
       this.ctx = wx.createCanvasContext('image')
-      this.drawImages(result)
+      this.drawImages(this.data.host + result.url)
       this.setData({
         image: result,
         baseUrl: result.url,
       })
     })
+  },
+
+  onHide(){
+    clearTimeout(timer)
   },
 
   //获取图片封装
@@ -82,16 +88,18 @@ Page({
         }
       })
     }
+    console.log(img)
 
     //下载图片
     wx.downloadFile({
-      url: img.url,
+      url: img,
       success: imgDown => {
+        console.log(imgDown,'download')
         //获取图片尺寸，然后绘制
         wx.getImageInfo({
           src: imgDown.tempFilePath,
           success: res => {
-            console.log(res, 'getImg')
+            console.log('getImg', res)
             const width = res.width
             const height = res.height
             if (!width || !height) {
@@ -118,6 +126,12 @@ Page({
         })
       },
     })
+
+    timer = setTimeout(() => {
+      if(!that.data.ok){
+        errorFnc()
+      }
+    }, 30000)
 
   },
 
@@ -200,12 +214,13 @@ Page({
       success: res => {
         console.log(res.tempFilePath)
         wx.uploadFile({
-          url: app.globalData.host + 'upload',
+          url: 'http://121.196.214.115:8080/upload',
           filePath: res.tempFilePath,
           name: 'file',
           success: res => {
             try {
-              let data = JSON.parse(res)
+              let data = JSON.parse(res.data)
+              console.log(data)
               that.setData({
                 baseUrl: data.base_url
               })

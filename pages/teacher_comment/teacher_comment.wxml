@@ -1,6 +1,6 @@
 <!--pages/teacher_comment/teacher_comment.wxml-->
 <view class='container'>
-  <image class='image' src='{{image.url}}' mode='aspectFit' catchtap='preImages'></image>
+  <image class='image' src='{{host + image.url}}' mode='aspectFit' catchtap='preImages'></image>
   <view class='operation-part'>
     <view class='flex-bug'>
       <scroll-view scroll-y class='scroll'>

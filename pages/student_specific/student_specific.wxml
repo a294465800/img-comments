@@ -2,7 +2,7 @@
 <view class='container'>
 
   <!--图片  -->
-  <image class='image' src='{{image.mark.pic_url?image.mark.pic_url:image.url}}' mode='widthFix'></image>
+  <image class='image' src='{{host + image.mark.pic_url}}' mode='widthFix'></image>
   <!--/图片  -->
 
   <block wx:if="{{image.mark}}">

@@ -14,6 +14,7 @@ Page({
 
     types: ['建筑学', '城规', '美术学', '景观'],
     category: 0,
+    host: 'http://121.196.214.115:8080/',
   },
 
   onShow(options) {

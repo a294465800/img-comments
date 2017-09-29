@@ -8,12 +8,18 @@ Page({
       1: null,
       2: null,
     },
+    host: 'http://121.196.214.115:8080/',
   },
 
   onLoad(options) {
     this.getArticle(1, res => {
       this.setData({
         'content[1]': res
+      })
+    })
+    this.getArticle(2, res => {
+      this.setData({
+        'content[2]': res
       })
     })
   },

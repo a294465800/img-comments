@@ -5,7 +5,8 @@ App({
   globalData: {
     _token: null,
     userInfo: null,
-    host: 'http://121.196.214.115:8080/api/v1/'
+    // host: 'http://121.196.214.115:8080/api/v1/'
+    host: 'https://www.arch-seu.com/api/v1/',
   },
 
   //获取用户设置

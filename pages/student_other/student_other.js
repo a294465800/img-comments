@@ -8,7 +8,7 @@ Page({
       1: null,
       2: null,
     },
-    host: 'http://121.196.214.115:8080/',
+    host: 'https://www.arch-seu.com/',
   },
 
   onLoad(options) {

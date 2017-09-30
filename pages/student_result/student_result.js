@@ -8,7 +8,7 @@ Page({
     //触底刷新控制
     flag: false,
     close: false,
-    host: 'http://121.196.214.115:8080/',
+    host: 'https://www.arch-seu.com/',
 
     //目录
     category: ['建筑学', '城规', '美术学', '景观'],

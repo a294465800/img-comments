@@ -3,7 +3,7 @@ const app = getApp()
 Page({
 
   data: {
-    host: 'http://121.196.214.115:8080/',
+    host: 'https://www.arch-seu.com/',
 
     //每个 picker 的 index
     index: {

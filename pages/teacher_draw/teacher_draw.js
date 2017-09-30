@@ -25,7 +25,7 @@ Page({
 
     //提交信息
     baseUrl: '',
-    host: 'http://121.196.214.115:8080/',
+    host: 'https://www.arch-seu.com/',
   },
 
   onLoad(options) {
@@ -77,6 +77,7 @@ Page({
 
   //绘制图片封装
   drawImages(img) {
+    console.log(img)
     const that = this
     function errorFnc() {
       wx.showModal({
@@ -205,7 +206,7 @@ Page({
       canvasId: 'image',
       success: res => {
         wx.uploadFile({
-          url: 'http://121.196.214.115:8080/upload',
+          url: 'https://www.arch-seu.com/upload',
           filePath: res.tempFilePath,
           name: 'file',
           success: res => {

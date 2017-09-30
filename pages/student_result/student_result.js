@@ -63,7 +63,6 @@ Page({
   //查看图片具体信息
   getMoreInfo(e) {
     const id = e.currentTarget.dataset.id
-    console.log(e, id)
     wx.navigateTo({
       url: '/pages/student_specific/student_specific?id=' + id,
     })

@@ -40,7 +40,7 @@ Page({
   },
 
   onHide(){
-    clearTimeout(timer)
+    // clearTimeout(timer)
   },
 
   //获取图片封装
@@ -88,18 +88,16 @@ Page({
         }
       })
     }
-    console.log(img)
+    
 
     //下载图片
     wx.downloadFile({
       url: img,
       success: imgDown => {
-        console.log(imgDown,'download')
         //获取图片尺寸，然后绘制
         wx.getImageInfo({
           src: imgDown.tempFilePath,
           success: res => {
-            console.log('getImg', res)
             const width = res.width
             const height = res.height
             if (!width || !height) {
@@ -126,12 +124,6 @@ Page({
         })
       },
     })
-
-    timer = setTimeout(() => {
-      if(!that.data.ok){
-        errorFnc()
-      }
-    }, 30000)
 
   },
 
@@ -203,7 +195,7 @@ Page({
       flag: true,
     })
 
-    this.drawImages(this.data.image)
+    this.drawImages(this.data.host + this.data.image.url)
   },
 
   //保存绘图
@@ -212,7 +204,6 @@ Page({
     wx.canvasToTempFilePath({
       canvasId: 'image',
       success: res => {
-        console.log(res.tempFilePath)
         wx.uploadFile({
           url: 'http://121.196.214.115:8080/upload',
           filePath: res.tempFilePath,
@@ -220,7 +211,6 @@ Page({
           success: res => {
             try {
               let data = JSON.parse(res.data)
-              console.log(data)
               that.setData({
                 baseUrl: data.base_url
               })
@@ -257,13 +247,11 @@ Page({
     wx.getStorage({
       key: 'save',
       success(res) {
-        console.log(res)
         submitInfo = res.data
 
         submitInfo.pic_url = that.data.baseUrl
         submitInfo.token = app.globalData._token
         let result = Object.assign(submitInfo, that.data.index)
-        console.log(submitInfo, result)
 
         wx.request({
           url: app.globalData.host + 'picture/' + that.data.image.id + '/mark',

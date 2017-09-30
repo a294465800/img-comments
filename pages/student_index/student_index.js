@@ -55,7 +55,6 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'file',
           success: upload => {
-            console.log(upload)
             try {
               let data = JSON.parse(upload.data)
               wx.hideLoading()

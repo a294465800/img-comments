@@ -96,6 +96,9 @@ App({
             }
           })
         }
+      },
+      fail: error => {
+        console.log(error)
       }
     })
   },

@@ -26,6 +26,9 @@ Page({
     //提交信息
     baseUrl: '',
     host: 'https://www.arch-seu.com/',
+
+    //下载图片缓存
+    downLoadImg: ''
   },
 
   onLoad(options) {
@@ -39,7 +42,7 @@ Page({
     })
   },
 
-  onHide(){
+  onHide() {
     // clearTimeout(timer)
   },
 
@@ -77,7 +80,6 @@ Page({
 
   //绘制图片封装
   drawImages(img) {
-    console.log(img)
     const that = this
     function errorFnc() {
       wx.showModal({
@@ -89,42 +91,73 @@ Page({
         }
       })
     }
-    
 
-    //下载图片
-    wx.downloadFile({
-      url: img,
-      success: imgDown => {
-        //获取图片尺寸，然后绘制
-        wx.getImageInfo({
-          src: imgDown.tempFilePath,
-          success: res => {
-            const width = res.width
-            const height = res.height
-            if (!width || !height) {
-              errorFnc()
-            }
-            let calc = Math.round(300 / width * height)
-            that.setData({
-              height: calc
-            })
-            that.ctx.drawImage(imgDown.tempFilePath, 0, 0, 300, calc)
-            that.ctx.draw()
-            that.setData({
-              ok: true,
-              flag: false,
-            })
-          },
-          fail: error => {
-            that.setData({
-              ok: true,
-              flag: false,
-            })
+    if (that.data.downloadImg) {
+      wx.getImageInfo({
+        src: that.data.downloadImg,
+        success: res => {
+          const width = res.width
+          const height = res.height
+          if (!width || !height) {
             errorFnc()
           }
-        })
-      },
-    })
+          let calc = Math.round(300 / width * height)
+          that.setData({
+            height: calc,
+          })
+          that.ctx.drawImage(that.data.downloadImg, 0, 0, 300, calc)
+          that.ctx.draw()
+          that.setData({
+            ok: true,
+            flag: false,
+          })
+        },
+        fail: error => {
+          that.setData({
+            ok: true,
+            flag: false,
+          })
+          errorFnc()
+        }
+      })
+    } else {
+
+      //下载图片
+      wx.downloadFile({
+        url: img,
+        success: imgDown => {
+          //获取图片尺寸，然后绘制
+          wx.getImageInfo({
+            src: imgDown.tempFilePath,
+            success: res => {
+              const width = res.width
+              const height = res.height
+              if (!width || !height) {
+                errorFnc()
+              }
+              let calc = Math.round(300 / width * height)
+              that.setData({
+                height: calc,
+                downLoadImg: imgDown.tempFilePath
+              })
+              that.ctx.drawImage(imgDown.tempFilePath, 0, 0, 300, calc)
+              that.ctx.draw()
+              that.setData({
+                ok: true,
+                flag: false,
+              })
+            },
+            fail: error => {
+              that.setData({
+                ok: true,
+                flag: false,
+              })
+              errorFnc()
+            }
+          })
+        },
+      })
+    }
 
   },
 

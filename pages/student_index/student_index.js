@@ -126,6 +126,9 @@ Page({
                           wx.showToast({
                             title: '提交成功',
                           })
+                          that.setData({
+                            image: ''
+                          })
                         })
                       } else {
                         wx.showModal({
@@ -139,6 +142,9 @@ Page({
                 } else {
                   wx.showToast({
                     title: '提交成功',
+                  })
+                  that.setData({
+                    image: ''
                   })
                 }
               } else {

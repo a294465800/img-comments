@@ -28,6 +28,7 @@
         <view class='text'>速度：{{speed[image.mark.speed]}}</view>
         <view class='text'>细节上存在的问题：{{issue[image.mark.issue]}}</view>
         <view class='text'>是否重做：{{redo[image.mark.redo]}}</view>
+        <view class='text'>需要改进：{{image.mark.detail}}</view>
       </view>
     </view>
     <!--/点评  -->
@@ -39,6 +40,7 @@
         <view class='comment-title'>点评人</view>
       </view>
       <view class='text'>{{image.teacher}}</view>
+      <view class='text'>{{image.teacher_desc || '暂无简介'}}</view>
       <!-- <view class='teacher-card'>
         <view class='teacher-info'>
           <view class='teacher-name'>{{image.teacher}}</view>

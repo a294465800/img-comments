@@ -1,29 +1,28 @@
 /* pages/teacher_images/teacher_images.wxss */
 
 .container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   text-align: center;
-  padding: 30rpx;
+  /* padding: 30rpx; */
 }
 
 .titile {
   font-size: 18pt;
   margin-bottom: 20rpx;
   position: relative;
+  padding: 20rpx 30rpx 0;
 }
 
 .title-money {
-  position: absolute;
   font-size: 13px;
-  top: 0;
-  left: 0;
+  text-align: left;
   color: #eb661b;
 }
 
 .refresh {
   background-color: #8ed338;
-  color: #fff!important;
+  color: #fff !important;
 }
 
 .title-refresh {
@@ -39,7 +38,7 @@
 }
 
 .images-wrap {
-  flex: 1;
+  /* flex: 1; */
   position: relative;
 }
 
@@ -77,4 +76,30 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: red;
   font-size: 18pt;
+}
+
+.tips {
+  padding-top: 20rpx;
+}
+
+/* 导航  */
+
+.images-nav {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-item {
+  flex: 1;
+  line-height: 2.3;
+  font-size: 16px;
+}
+
+.nav-item.active {
+  color: #eb661b;
+  border-bottom: 3px solid #eb661b;
 }

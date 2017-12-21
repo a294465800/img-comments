@@ -83,7 +83,7 @@
 .submit {
   background-color: #42c02e;
   font-size: 16pt;
-  padding: 24rpx 0;
+  /* padding: 24rpx 0; */
   margin-bottom: 20rpx;
   border-radius: 4px;
 }

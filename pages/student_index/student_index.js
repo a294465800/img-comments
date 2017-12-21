@@ -83,7 +83,7 @@ Page({
   },
 
   //提交图片
-  submit() {
+  submit(e) {
     const that = this
     let image = that.data.image
     if (!image) {
@@ -107,7 +107,8 @@ Page({
               url: that.data.baseUrl,
               category: that.data.index * 1 + 1,
               money: that.data.money,
-              token: app.globalData._token
+              token: app.globalData._token,
+              notify_code: e.detail.formId
             },
             success: res => {
               if ('OK' == res.data.code) {

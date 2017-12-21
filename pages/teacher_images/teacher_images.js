@@ -6,15 +6,36 @@ Page({
   data: {
     //触底刷新控制
     flag: false,
-    close: false,
-    page: 1,
+    close: {
+      1: false,
+      2: false
+    },
+    page: {
+      1: 1,
+      2: 1
+    },
 
-    images: [],
+    images: {
+      1: [],
+      2: []
+    },
     account: 0,
 
     types: ['建筑学', '城规', '美术学', '景观'],
     category: 0,
     host: 'https://www.arch-seu.com/',
+
+    navs: [
+      {
+        id: 1,
+        name: '未批注'
+      },
+      {
+        id: 2,
+        name: '已批注'
+      }
+    ],
+    currentState: 1
   },
 
   onShow(options) {
@@ -65,6 +86,7 @@ Page({
         token: app.globalData._token,
         type: 2,
         page: page,
+        state: this.data.currentState
       },
       success: res => {
         try {
@@ -92,11 +114,12 @@ Page({
   },
 
   //触底刷新
-  toBottom() {
+  onReachBottom() {
     const that = this
     let flag = that.data.flag
-    let close = that.data.close
-    let page = that.data.page
+    const curretState = that.data.currentState
+    let close = that.data.close[curretState]
+    let page = that.data.page[curretState]
 
     //阻止重复触发或者主动关闭
     if (flag || close) {
@@ -110,14 +133,14 @@ Page({
       if (res.length) {
         that.setData({
           flag: false,
-          page: page + 1,
-          images: [...that.data.images, ...res],
+          [`page.${currentState}`]: page + 1,
+          [`images.${currentState}`]: [...that.data.images[currentState], ...res],
         })
       } else {
         that.setData({
-          close: true,
+          [`close.${currentState}`]: true,
           flag: false,
-          page: page + 1
+          [`page.${currentState}`]: page + 1,
         })
       }
       wx.hideLoading()
@@ -152,5 +175,25 @@ Page({
       url: '/pages/teacher_comment/teacher_comment?id=' + id,
     })
   },
+
+  //导航
+  navClick(e) {
+    const id = e.target.dataset.id
+    const currentState = this.data.currentState
+    if (!id || id == currentState) {
+      return false
+    }
+    this.setData({
+      currentState: id
+    })
+    this.imagesRequest(1, res => {
+      that.setData({
+        flag: false,
+        [`close${id}`]: false,
+        [`page.${id}`]: 1,
+        [`images.${id}`]: [...that.data.images[id], ...res],
+      })
+    })
+  }
 
 })

@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/student_index/student_index",
     "pages/teacher_images/teacher_images",
+    "pages/student_index/student_index",
     "pages/teacher_draw/teacher_draw",
     "pages/teacher_comment/teacher_comment",
     "pages/teacher_index/teacher_index",

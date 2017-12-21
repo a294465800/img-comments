@@ -2,21 +2,33 @@
 <view class='container'>
   <view class='titile'>{{types[category - 1]}}
     <view class='title-money'>本月资费：{{account}} 元</view>
-    <view class='title-refresh' hover-class='refresh' hover-stay-time='150' catchtap='refreshPage'>刷新</view>
+    <!-- <view class='title-refresh' hover-class='refresh' hover-stay-time='150' catchtap='refreshPage'>刷新</view> -->
   </view>
   <view class='images-wrap'>
-    <block wx:if="{{images.length}}">
-      <view class='flex-bug'>
-        <scroll-view scroll-y class='scroll' bindscrolltolower="toBottom">
-          <view class='img-item' wx:for="{{images}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150' catchtap='{{img.state == 1?"goToComment": ""}}' data-id='{{img.id}}'>
-            <image mode='aspectFit' class='img-item-img {{img.state == 1?"":"comment"}}' src='{{host + img.url}}'></image>
-            <view>点评</view>
-          </view>
-        </scroll-view>
-      </view>
+    <view class='images-nav' catchtap='navClick'>
+      <view class='nav-item {{currentState == navItem.id?"active":""}}' data-id='{{navItem.id}}' wx:for="{{navs}}" wx:for-item="navItem" wx:key="id">{{navItem.name}}</view>
+    </view>
+    <block wx:if="{{currentState == 1}}">
+      <block wx:if="{{images[1].length}}">
+        <view class='img-item' wx:for="{{images[1]}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150' catchtap='goToComment' data-id='{{img.id}}'>
+          <image mode='aspectFit' class='img-item-img' src='{{host + img.url}}'></image>
+          <view>点评</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='tips'>暂无内容</view>
+      </block>
     </block>
-    <block wx:else>
-      <view class='tips'>暂无内容</view>
+    <block wx:if="{{currentState == 2}}">
+      <block wx:if="{{images[2].length}}">
+        <view class='img-item' wx:for="{{images[2]}}" wx:key="id" wx:for-item="img" hover-class='hover-class' hover-stay-time='150'>
+          <image mode='aspectFit' class='img-item-img comment' src='{{host + img.url}}'></image>
+          <view>点评</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='tips'>暂无内容</view>
+      </block>
     </block>
   </view>
 </view>

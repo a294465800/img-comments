@@ -14,8 +14,10 @@ Page({
       issue: 0,
       redo: 1,
     },
-    issue: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误'],
+    issue: ['结构错误', '表达错误', '审题错误', '不采光', '流线错误', '不通风', '还有一些其他错误', '无明显错误'],
     redo: ['是', '否'],
+
+    remark: '',
 
     //画布属性
     height: 0,
@@ -274,6 +276,14 @@ Page({
 
   },
 
+  //remark
+  getRemark(e) {
+    const value = e.detail.value
+    this.setData({
+      remark: value
+    })
+  },
+
   //提交
   submitComment() {
     const that = this
@@ -285,6 +295,7 @@ Page({
 
         submitInfo.pic_url = that.data.baseUrl
         submitInfo.token = app.globalData._token
+        submitInfo.remark = that.data.remark
         let result = Object.assign(submitInfo, that.data.index)
 
         wx.request({

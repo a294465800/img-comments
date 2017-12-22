@@ -32,6 +32,10 @@
         <label class='label-control'>在如图细节标记上，存在以下问题：</label>
         <picker class='picker' bindchange="pickerChoose" data-name="issue" value="{{index.issue}}" range="{{issue}}">{{issue[index.issue]}}</picker>
       </view>
+      <view class='form-group' wx:if="{{index.issue >= 6}}">
+        <label class='label-control'>请填写具体内容：</label>
+        <input class='input-control' bindinput='getRemark' placeholder='写下具体内容' placeholder-class='input-placeholder'></input>
+      </view>
       <view class='form-group form-inline'>
         <label class='label-control'>是否希望该作业重新做一遍：</label>
         <picker class='picker' style='text-align: center;' bindchange="pickerChoose" data-name="redo" value="{{index.redo}}" range="{{redo}}">{{redo[index.redo]}}</picker>

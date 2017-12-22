@@ -14,7 +14,8 @@
           <image mode='aspectFit' src='/images/score.png'></image>
           <view class='comment-title '>评分</view>
         </view>
-        <view class='score-point'><text>{{image.mark.score}}</text> 分</view>
+        <view class='score-point'>
+          <text>{{image.mark.score}}</text> 分</view>
       </view>
       <view class='content'>
         <view class='icon-part'>
@@ -26,7 +27,7 @@
         <view class='text'>表达：{{expression[image.mark.expression]}}</view>
         <view class='text'>上色：{{color[image.mark.color]}}</view>
         <view class='text'>速度：{{speed[image.mark.speed]}}</view>
-        <view class='text'>细节上存在的问题：{{issue[image.mark.issue]}}</view>
+        <view class='text'>细节上存在的问题：{{issue[image.mark.issue]}} {{image.mark.remark?","+image.mark.remark:""}}</view>
         <view class='text'>是否重做：{{redo[image.mark.redo]}}</view>
         <view class='text'>需要改进：{{image.mark.detail}}</view>
       </view>

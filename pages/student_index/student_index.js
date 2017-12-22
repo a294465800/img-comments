@@ -56,6 +56,7 @@ Page({
           name: 'file',
           success: upload => {
             try {
+              console.log(upload.data)
               let data = JSON.parse(upload.data)
               wx.hideLoading()
               that.setData({
@@ -63,6 +64,7 @@ Page({
                 baseUrl: data.base_url
               })
             } catch (error) {
+              console.log(error)
               wx.showModal({
                 title: '提示',
                 content: '上传出错',

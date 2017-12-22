@@ -41,7 +41,7 @@ Page({
   onShow(options) {
     this.imagesRequest(1, result => {
       this.setData({
-        images: result
+        'images.1': result
       })
     })
 
@@ -100,6 +100,7 @@ Page({
             })
           }
         } catch (error) {
+          console.log(error)
           wx.showModal({
             title: '提示',
             content: '服务器错误',
@@ -117,9 +118,9 @@ Page({
   onReachBottom() {
     const that = this
     let flag = that.data.flag
-    const curretState = that.data.currentState
-    let close = that.data.close[curretState]
-    let page = that.data.page[curretState]
+    const currentState = that.data.currentState
+    let close = that.data.close[currentState]
+    let page = that.data.page[currentState]
 
     //阻止重复触发或者主动关闭
     if (flag || close) {
@@ -178,6 +179,7 @@ Page({
 
   //导航
   navClick(e) {
+    const that = this
     const id = e.target.dataset.id
     const currentState = this.data.currentState
     if (!id || id == currentState) {
@@ -189,9 +191,9 @@ Page({
     this.imagesRequest(1, res => {
       that.setData({
         flag: false,
-        [`close${id}`]: false,
+        [`close.${id}`]: false,
         [`page.${id}`]: 1,
-        [`images.${id}`]: [...that.data.images[id], ...res],
+        [`images.${id}`]: res,
       })
     })
   }

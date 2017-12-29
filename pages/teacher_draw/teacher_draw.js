@@ -288,6 +288,14 @@ Page({
   submitComment() {
     const that = this
     let submitInfo = {}
+    if (!this.data.remark) {
+      wx.showModal({
+        title: '提示',
+        content: '具体内容不能为空！',
+        showCancel: false
+      })
+      return false
+    }
     wx.getStorage({
       key: 'save',
       success(res) {

@@ -25,6 +25,8 @@ Page({
     speed: ['不错，继续保持', '未标明时间，不知道速度如何'],
 
     image: {},
+
+    scoreValue: ''
   },
 
   onLoad(options) {
@@ -71,6 +73,14 @@ Page({
   preImages() {
     wx.previewImage({
       urls: [this.data.host + this.data.image.url],
+    })
+  },
+
+  //分数 input
+  scoreInput(e) {
+    const value = e.detail.value
+    this.setData({
+      scoreValue: value > 50 ? 50 : value
     })
   },
 

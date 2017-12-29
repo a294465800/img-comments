@@ -7,7 +7,7 @@
         <form bindsubmit='nextStep'>
           <view class='form-group form-inline'>
             <label class='label-control'>该作业，总体给分：</label>
-            <input class='input-control' name="score" type='digit' placeholder='满分 50 分' placeholder-class='input-placeholder'></input>
+            <input class='input-control' bindinput='scoreInput' value='{{scoreValue}}' name="score" type='digit' placeholder='满分 50 分' placeholder-class='input-placeholder'></input>
           </view>
           <view class='form-group form-inline'>
             <label class='label-control'>完成度：</label>
